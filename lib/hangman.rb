@@ -67,4 +67,20 @@ class Hangman
     user_guess = try_guess(user_input)
     return user_guess
   end
+
+  def win?
+    if @guess_word == @secret_word
+      p "WIN"
+      return true
+    end
+    false
+  end
+
+  def lose?
+    if @remaining_incorrect_guesses == 0
+      p "LOSE"
+      return true
+    end
+    false
+  end 
 end
