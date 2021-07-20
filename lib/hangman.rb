@@ -69,7 +69,7 @@ class Hangman
   end
 
   def win?
-    if @guess_word == @secret_word
+    if @guess_word.join("") == @secret_word
       p "WIN"
       return true
     end
@@ -83,4 +83,15 @@ class Hangman
     end
     false
   end 
+
+  def game_over?
+    if self.win?
+      p @secret_word
+      return true
+    elsif self.lose?
+      p @secret_word
+      return true
+    end
+    false
+  end
 end
