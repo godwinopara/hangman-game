@@ -23,4 +23,28 @@ class Hangman
   def remaining_incorrect_guesses
     @remaining_incorrect_guesses
   end
+
+  def already_attempted?(char)
+    if @attempted_chars.include?(char)
+      return true
+    else
+      return false
+    end
+  end
+  def get_matching_indices(char)
+    indices = []
+    @secret_word.each_char.with_index { |ele, idx| indices << idx if char == ele}
+    indices
+  end
+
+  def fill_indices(char, indices_arr)
+  indices_arr.each { |idx| @guess_word[idx] = char}
+  end
+
+  def try_guess(char)
+    if already_attempted(char)
+      p "#{char} has already been attempted"
+    end
+
+  end
 end
