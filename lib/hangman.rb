@@ -41,10 +41,30 @@ class Hangman
   indices_arr.each { |idx| @guess_word[idx] = char}
   end
 
+
   def try_guess(char)
-    if already_attempted(char)
+    get_indices = get_matching_indices(char)
+    is_attempted = already_attempted?(char)
+    fill_indices(char, get_indices)
+
+    if get_indices.empty?
+      @remaining_incorrect_guesses -= 1
+
+    end
+    if is_attempted
       p "#{char} has already been attempted"
+      return false
+    elsif !is_attempted
+      @attempted_chars << char
+      return true
     end
 
+  end
+
+  def ask_user_for_guess
+    p "Enter a char: "
+    user_input = gets.chomp
+    user_guess = try_guess(user_input)
+    return user_guess
   end
 end
